@@ -8,7 +8,7 @@
    <packaging>jar</packaging>
    <name>GWT CMIS Client Framework</name>
    <properties>
-      <gwt.version>2.0.3</gwt.version>
+      <gwt.version>2.0.4</gwt.version>
    </properties>
    <dependencies>
       <dependency>
@@ -78,8 +78,8 @@
                   <groupId>org.codehaus.mojo</groupId>
                   <artifactId>gwt-maven-plugin</artifactId>
                   <configuration>
-                     <module>gwtcmis.CmisClientFrameworkJUnit</module>
-                     <runTarget>gwtcmis.CmisClientFrameworkJUnit/CmisClientFrameworkJUnit.html</runTarget>
+                     <module>org.gwtcmis.CmisClientFrameworkJUnit</module>
+                     <runTarget>org.gwtcmis.CmisClientFrameworkJUnit/CmisClientFrameworkJUnit.html</runTarget>
                      <logLevel>INFO</logLevel>
                      <hostedWebapp>${basedir}/target/war</hostedWebapp>
                      <tomcat>${basedir}/target/tomcat</tomcat>
