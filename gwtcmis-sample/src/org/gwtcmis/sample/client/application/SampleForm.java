@@ -15,23 +15,7 @@
  * along with this program; if not, see<http://www.gnu.org/licenses/>.
  */
 
-package gwtcmis.sample.client.application;
-
-import gwtcmis.client.CMIS;
-import gwtcmis.model.EnumBaseObjectTypeIds;
-import gwtcmis.model.property.BooleanProperty;
-import gwtcmis.model.property.CmisProperties;
-import gwtcmis.model.property.DateTimeProperty;
-import gwtcmis.model.property.DecimalProperty;
-import gwtcmis.model.property.IdProperty;
-import gwtcmis.model.property.IntegerProperty;
-import gwtcmis.model.property.Property;
-import gwtcmis.model.property.StringProperty;
-import gwtcmis.model.property.UriProperty;
-import gwtcmis.model.repository.CmisRepositoryInfo;
-import gwtcmis.model.restatom.AtomEntry;
-
-import java.util.List;
+package org.gwtcmis.sample.client.application;
 
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.logical.shared.SelectionEvent;
@@ -45,6 +29,22 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+
+import org.gwtcmis.client.CMIS;
+import org.gwtcmis.model.EnumBaseObjectTypeIds;
+import org.gwtcmis.model.property.BooleanProperty;
+import org.gwtcmis.model.property.CmisProperties;
+import org.gwtcmis.model.property.DateTimeProperty;
+import org.gwtcmis.model.property.DecimalProperty;
+import org.gwtcmis.model.property.IdProperty;
+import org.gwtcmis.model.property.IntegerProperty;
+import org.gwtcmis.model.property.Property;
+import org.gwtcmis.model.property.StringProperty;
+import org.gwtcmis.model.property.UriProperty;
+import org.gwtcmis.model.repository.CmisRepositoryInfo;
+import org.gwtcmis.model.restatom.AtomEntry;
+
+import java.util.List;
 
 /**
  * Created by The eXo Platform SAS.
@@ -146,7 +146,7 @@ public class SampleForm extends FlowPanel implements SamplePresenter.Display
    }
 
    /**
-    * @see gwtcmis.sample.client.application.SamplePresenter.Display#showObjects(java.util.List)
+    * @see org.gwtcmis.sample.client.application.SamplePresenter.Display#showObjects(java.util.List)
     */
    public void showObjects(List<AtomEntry> entries)
    {
@@ -257,7 +257,7 @@ public class SampleForm extends FlowPanel implements SamplePresenter.Display
    }
 
    /**
-    * @see gwtcmis.sample.client.application.SamplePresenter.Display#displayRepository(org.xcmis.gwtframework.client.model.repository.CmisRepositoryInfo)
+    * @see org.gwtcmis.sample.client.application.SamplePresenter.Display#displayRepository(org.xcmis.gwtframework.client.model.repository.CmisRepositoryInfo)
     */
    public void displayRepository(CmisRepositoryInfo repositoryInfo)
    {
@@ -267,7 +267,7 @@ public class SampleForm extends FlowPanel implements SamplePresenter.Display
    }
 
    /**
-    * @see gwtcmis.sample.client.application.SamplePresenter.Display#getAddFolderButton()
+    * @see org.gwtcmis.sample.client.application.SamplePresenter.Display#getAddFolderButton()
     */
    public HasClickHandlers getCreateFolderButton()
    {
@@ -275,7 +275,7 @@ public class SampleForm extends FlowPanel implements SamplePresenter.Display
    }
 
    /**
-    * @see gwtcmis.sample.client.application.SamplePresenter.Display#addNewObject(org.xcmis.gwtframework.client.model.restatom.AtomEntry)
+    * @see org.gwtcmis.sample.client.application.SamplePresenter.Display#addNewObject(org.xcmis.gwtframework.client.model.restatom.AtomEntry)
     */
    public void addNewObject(AtomEntry entry)
    {
@@ -283,7 +283,7 @@ public class SampleForm extends FlowPanel implements SamplePresenter.Display
    }
 
    /**
-    * @see gwtcmis.sample.client.application.SamplePresenter.Display#getCreateDocumentButton()
+    * @see org.gwtcmis.sample.client.application.SamplePresenter.Display#getCreateDocumentButton()
     */
    public HasClickHandlers getCreateDocumentButton()
    {
@@ -291,7 +291,7 @@ public class SampleForm extends FlowPanel implements SamplePresenter.Display
    }
 
    /**
-    * @see gwtcmis.sample.client.application.SamplePresenter.Display#getDeleteButton()
+    * @see org.gwtcmis.sample.client.application.SamplePresenter.Display#getDeleteButton()
     */
    public HasClickHandlers getDeleteButton()
    {
@@ -299,7 +299,7 @@ public class SampleForm extends FlowPanel implements SamplePresenter.Display
    }
 
    /**
-    * @see gwtcmis.sample.client.application.SamplePresenter.Display#removeObject()
+    * @see org.gwtcmis.sample.client.application.SamplePresenter.Display#removeObject()
     */
    public String removeObject()
    {
@@ -318,7 +318,7 @@ public class SampleForm extends FlowPanel implements SamplePresenter.Display
    }
 
    /**
-    * @see gwtcmis.sample.client.application.SamplePresenter.Display#setEnableCreateButtons(boolean)
+    * @see org.gwtcmis.sample.client.application.SamplePresenter.Display#setEnableCreateButtons(boolean)
     */
    public void setEnableCreateButtons(boolean enable)
    {
@@ -327,7 +327,7 @@ public class SampleForm extends FlowPanel implements SamplePresenter.Display
    }
 
    /**
-    * @see gwtcmis.sample.client.application.SamplePresenter.Display#setEnableDeleteButton(boolean)
+    * @see org.gwtcmis.sample.client.application.SamplePresenter.Display#setEnableDeleteButton(boolean)
     */
    public void setEnableDeleteButton(boolean enable)
    {

@@ -1,6 +1,6 @@
-package gwtcmis.sample.client;
+package org.gwtcmis.sample.client;
 
-import gwtcmis.sample.client.application.SampleForm;
+import org.gwtcmis.sample.client.application.SampleForm;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.shared.HandlerManager;

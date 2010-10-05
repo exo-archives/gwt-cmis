@@ -15,46 +15,46 @@
  * along with this program; if not, see<http://www.gnu.org/licenses/>.
  */
 
-package gwtcmis.sample.client.application;
-
-import gwtcmis.client.CMIS;
-import gwtcmis.model.EnumBaseObjectTypeIds;
-import gwtcmis.model.EnumIncludeRelationships;
-import gwtcmis.model.actions.CreateDocument;
-import gwtcmis.model.actions.CreateFolder;
-import gwtcmis.model.property.CmisProperties;
-import gwtcmis.model.property.IdProperty;
-import gwtcmis.model.property.Property;
-import gwtcmis.model.property.StringProperty;
-import gwtcmis.model.repository.CmisRepositoryInfo;
-import gwtcmis.model.restatom.AtomEntry;
-import gwtcmis.model.restatom.AtomLink;
-import gwtcmis.model.restatom.EnumCollectionType;
-import gwtcmis.model.restatom.EnumLinkRelation;
-import gwtcmis.model.restatom.EnumRenditionFilter;
-import gwtcmis.rest.ExceptionThrownEvent;
-import gwtcmis.rest.ExceptionThrownHandler;
-import gwtcmis.rest.ServerException;
-import gwtcmis.service.navigation.NavigationService;
-import gwtcmis.service.navigation.event.ChildrenReceivedEvent;
-import gwtcmis.service.navigation.event.ChildrenReceivedHandler;
-import gwtcmis.service.object.ObjectService;
-import gwtcmis.service.object.event.DocumentCreatedEvent;
-import gwtcmis.service.object.event.DocumentCreatedHandler;
-import gwtcmis.service.object.event.FolderCreatedEvent;
-import gwtcmis.service.object.event.FolderCreatedHandler;
-import gwtcmis.service.repository.RepositoryService;
-import gwtcmis.service.repository.event.RepositoriesReceivedEvent;
-import gwtcmis.service.repository.event.RepositoriesReceivedHandler;
-
-import java.util.HashMap;
-import java.util.List;
+package org.gwtcmis.sample.client.application;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.Window;
+
+import org.gwtcmis.client.CMIS;
+import org.gwtcmis.model.EnumBaseObjectTypeIds;
+import org.gwtcmis.model.EnumIncludeRelationships;
+import org.gwtcmis.model.actions.CreateDocument;
+import org.gwtcmis.model.actions.CreateFolder;
+import org.gwtcmis.model.property.CmisProperties;
+import org.gwtcmis.model.property.IdProperty;
+import org.gwtcmis.model.property.Property;
+import org.gwtcmis.model.property.StringProperty;
+import org.gwtcmis.model.repository.CmisRepositoryInfo;
+import org.gwtcmis.model.restatom.AtomEntry;
+import org.gwtcmis.model.restatom.AtomLink;
+import org.gwtcmis.model.restatom.EnumCollectionType;
+import org.gwtcmis.model.restatom.EnumLinkRelation;
+import org.gwtcmis.model.restatom.EnumRenditionFilter;
+import org.gwtcmis.rest.ExceptionThrownEvent;
+import org.gwtcmis.rest.ExceptionThrownHandler;
+import org.gwtcmis.rest.ServerException;
+import org.gwtcmis.service.navigation.NavigationService;
+import org.gwtcmis.service.navigation.event.ChildrenReceivedEvent;
+import org.gwtcmis.service.navigation.event.ChildrenReceivedHandler;
+import org.gwtcmis.service.object.ObjectService;
+import org.gwtcmis.service.object.event.DocumentCreatedEvent;
+import org.gwtcmis.service.object.event.DocumentCreatedHandler;
+import org.gwtcmis.service.object.event.FolderCreatedEvent;
+import org.gwtcmis.service.object.event.FolderCreatedHandler;
+import org.gwtcmis.service.repository.RepositoryService;
+import org.gwtcmis.service.repository.event.RepositoriesReceivedEvent;
+import org.gwtcmis.service.repository.event.RepositoriesReceivedHandler;
+
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by The eXo Platform SAS.
@@ -176,7 +176,6 @@ public class SamplePresenter implements RepositoriesReceivedHandler, ChildrenRec
       if (repositories.size() > 0)
       {
          currentRepository = repositories.get(0);
-         repositoryService.getRepositoryInfo(url + "/" + currentRepository.getRepositoryName());
          int maxItems = 10;
          int skipCount = 0;
          EnumIncludeRelationships includeRelationships = EnumIncludeRelationships.NONE;
