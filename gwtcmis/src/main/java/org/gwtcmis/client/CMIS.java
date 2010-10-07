@@ -25,6 +25,7 @@ import org.gwtcmis.model.EnumPropertiesDocument;
 import org.gwtcmis.model.EnumPropertiesFolder;
 import org.gwtcmis.model.EnumPropertiesPolicy;
 import org.gwtcmis.model.EnumPropertiesRelationship;
+import org.gwtcmis.rest.QName;
 
 /**
  * Created by The eXo Platform SAS.
@@ -945,7 +946,7 @@ public class CMIS
    /**
     * Collection.
     */
-   public static final String COLLECTION = "collection";
+   public static final QName COLLECTION = new QName("app:collection", "http://www.w3.org/2007/app");
 
    /**
     * Content.
@@ -1030,7 +1031,7 @@ public class CMIS
    /**
     * Workspace.
     */
-   public static final String WORKSPACE = "workspace";
+   public static final QName WORKSPACE = new QName("app:workspace", "http://www.w3.org/2007/app");
 
    /**
     * XMLNS app.

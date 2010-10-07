@@ -21,6 +21,7 @@ package org.gwtcmis.unmarshallers.parser;
 
 import org.gwtcmis.client.CMIS;
 import org.gwtcmis.model.repository.CmisRepositoryInfo;
+import org.gwtcmis.rest.QName;
 
 
 
@@ -52,7 +53,8 @@ public class RepositoryInfoParser
    public static void parse(Node node, CmisRepositoryInfo repositoryInfo)
    {
       //Check whether it is repository information node, if not - return
-      if (!node.getNodeName().equals(CMIS.WORKSPACE))
+     QName qName = new QName(node.getNodeName(), node.getNamespaceURI());
+      if (!qName.equals(CMIS.WORKSPACE))
       {
          return;
       }

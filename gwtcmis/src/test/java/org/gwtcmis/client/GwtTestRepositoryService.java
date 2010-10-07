@@ -38,12 +38,7 @@ import org.gwtcmis.unmarshallers.parser.RepositoriesParser;
 import org.gwtcmis.unmarshallers.parser.RepositoryInfoParser;
 import org.gwtcmis.unmarshallers.parser.TypeParser;
 
-
-
-
-
 import java.util.List;
-
 
 import com.google.gwt.junit.client.GWTTestCase;
 import com.google.gwt.xml.client.Document;
@@ -116,6 +111,91 @@ public class GwtTestRepositoryService extends GWTTestCase
          + "<cmisra:type>objectbyid</cmisra:type>"
          + "<cmisra:mediatype>application/atom+xml;type=entry</cmisra:mediatype>"
          + "<cmisra:template>http://cmis.demo.nuxeo.org/nuxeo/site/cmis/object/{id}?filter={filter}&amp;renditionFilter={renditionFilter}&amp;includeRelationships={includeRelationships}&amp;includeAllowableActions={includeAllowableActions}&amp;includePolicyIds={includePolicyIds}&amp;includeACL={includeACL}</cmisra:template></cmisra:uritemplate><cmisra:uritemplate><cmisra:type>objectbypath</cmisra:type><cmisra:mediatype>application/atom+xml;type=entry</cmisra:mediatype><cmisra:template>http://cmis.demo.nuxeo.org/nuxeo/site/cmis/object?path={path}&amp;filter={filter}&amp;renditionFilter={renditionFilter}&amp;includeRelationships={includeRelationships}&amp;includeAllowableActions={includeAllowableActions}&amp;includePolicyIds={includePolicyIds}&amp;includeACL={includeACL}</cmisra:template></cmisra:uritemplate><cmisra:uritemplate><cmisra:type>query</cmisra:type><cmisra:mediatype>application/atom+xml;type=feed</cmisra:mediatype><cmisra:template>http://cmis.demo.nuxeo.org/nuxeo/site/cmis/query?q={q}&amp;searchAllVersions={searchAllVersions}&amp;maxItems={maxItems}&amp;skipCount={skipCount}&amp;includeRelationships={includeRelationships}&amp;includeAllowableActions={includeAllowableActions}</cmisra:template></cmisra:uritemplate><cmisra:uritemplate><cmisra:type>typebyid</cmisra:type><cmisra:mediatype>application/atom+xml;type=feed</cmisra:mediatype><cmisra:template>http://cmis.demo.nuxeo.org/nuxeo/site/cmis/type/{id}</cmisra:template></cmisra:uritemplate></workspace></service>";
+
+   private String nuxeoRepositoriesResponse =
+      "<?xml version='1.0' encoding='UTF-8'?>"
+         + "<app:service xmlns:app=\"http://www.w3.org/2007/app\" xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:cmis=\"http://docs.oasis-open.org/ns/cmis/core/200908/\" xmlns:cmisra=\"http://docs.oasis-open.org/ns/cmis/restatom/200908/\">"
+         + "<app:workspace>"
+         + "<atom:title>default</atom:title>"
+         + "<app:collection href=\"http://cmis.demo.nuxeo.org/nuxeo/atom/cmis/default/children?id=86592bb7-0d9f-49a5-bb06-ee86fa7b422f\">"
+         + "<cmisra:collectionType>root</cmisra:collectionType>"
+         + "<atom:title type=\"text\">Root Collection</atom:title>"
+         + "<app:accept>application/atom+xml;type=entry</app:accept>"
+         + "<app:accept>application/cmisatom+xml</app:accept>"
+         + "</app:collection>"
+         + "<app:collection href=\"http://cmis.demo.nuxeo.org/nuxeo/atom/cmis/default/types\">"
+         + "<cmisra:collectionType>types</cmisra:collectionType>"
+         + "<atom:title type=\"text\">Types Collection</atom:title>"
+         + "<app:accept></app:accept>"
+         + "</app:collection>"
+         + "<app:collection href=\"http://cmis.demo.nuxeo.org/nuxeo/atom/cmis/default/query\">"
+         + "<cmisra:collectionType>query</cmisra:collectionType>"
+         + "<atom:title type=\"text\">Query Collection</atom:title>"
+         + "<app:accept>application/cmisquery+xml</app:accept>"
+         + "</app:collection>"
+         + "<app:collection href=\"http://cmis.demo.nuxeo.org/nuxeo/atom/cmis/default/checkedout\">"
+         + "<cmisra:collectionType>checkedout</cmisra:collectionType>"
+         + "<atom:title type=\"text\">Checked Out Collection</atom:title>"
+         + "<app:accept>application/cmisatom+xml</app:accept>"
+         + "</app:collection>"
+         + "<cmisra:repositoryInfo xmlns:ns3=\"http://docs.oasis-open.org/ns/cmis/messaging/200908/\">"
+         + "<cmis:repositoryId>default</cmis:repositoryId>"
+         + "<cmis:repositoryName>Nuxeo Repository default</cmis:repositoryName>"
+         + "<cmis:repositoryDescription>Nuxeo Repository default</cmis:repositoryDescription>"
+         + "<cmis:vendorName>Nuxeo</cmis:vendorName>"
+         + "<cmis:productName>Nuxeo OpenCMIS Connector</cmis:productName>"
+         + "<cmis:productVersion>5.4.0-SNAPSHOT</cmis:productVersion>"
+         + "<cmis:rootFolderId>86592bb7-0d9f-49a5-bb06-ee86fa7b422f</cmis:rootFolderId>"
+         + "<cmis:capabilities>"
+         + "<cmis:capabilityACL>none</cmis:capabilityACL>"
+         + "<cmis:capabilityAllVersionsSearchable>true</cmis:capabilityAllVersionsSearchable>"
+         + "<cmis:capabilityChanges>properties</cmis:capabilityChanges>"
+         + "<cmis:capabilityContentStreamUpdatability>pwconly</cmis:capabilityContentStreamUpdatability>"
+         + "<cmis:capabilityGetDescendants>true</cmis:capabilityGetDescendants>"
+         + "<cmis:capabilityGetFolderTree>true</cmis:capabilityGetFolderTree>"
+         + "<cmis:capabilityMultifiling>false</cmis:capabilityMultifiling>"
+         + "<cmis:capabilityPWCSearchable>false</cmis:capabilityPWCSearchable>"
+         + "<cmis:capabilityPWCUpdatable>false</cmis:capabilityPWCUpdatable>"
+         + "<cmis:capabilityQuery>bothcombined</cmis:capabilityQuery>"
+         + "<cmis:capabilityRenditions>none</cmis:capabilityRenditions>"
+         + "<cmis:capabilityUnfiling>false</cmis:capabilityUnfiling>"
+         + "<cmis:capabilityVersionSpecificFiling>false</cmis:capabilityVersionSpecificFiling>"
+         + "<cmis:capabilityJoin>innerandouter</cmis:capabilityJoin>"
+         + "</cmis:capabilities>"
+         + "<cmis:aclCapability>"
+         + "<cmis:supportedPermissions>basic</cmis:supportedPermissions>"
+         + "<cmis:propagation>repositorydetermined</cmis:propagation>"
+         + "</cmis:aclCapability>"
+         + "<cmis:cmisVersionSupported>1.0</cmis:cmisVersionSupported>"
+         + "<cmis:changesIncomplete>true</cmis:changesIncomplete>"
+         + "<cmis:changesOnType>cmis:document</cmis:changesOnType>"
+         + "<cmis:changesOnType>cmis:folder</cmis:changesOnType>"
+         + "<cmis:principalAnonymous>Guest</cmis:principalAnonymous>"
+         + "<cmis:principalAnyone>Everyone</cmis:principalAnyone>"
+         + "</cmisra:repositoryInfo>"
+         + "<atom:link rel=\"http://docs.oasis-open.org/ns/cmis/link/200908/typedescendants\" href=\"http://cmis.demo.nuxeo.org/nuxeo/atom/cmis/default/typedesc\" type=\"application/atom+xml;type=feed\" />"
+         + "<atom:link rel=\"http://docs.oasis-open.org/ns/cmis/link/200908/foldertree\" href=\"http://cmis.demo.nuxeo.org/nuxeo/atom/cmis/default/foldertree?id=86592bb7-0d9f-49a5-bb06-ee86fa7b422f\" type=\"application/cmistree+xml\" />"
+         + "<atom:link rel=\"http://docs.oasis-open.org/ns/cmis/link/200908/rootdescendants\" href=\"http://cmis.demo.nuxeo.org/nuxeo/atom/cmis/default/descendants?id=86592bb7-0d9f-49a5-bb06-ee86fa7b422f\" type=\"application/cmistree+xml\" cmisra:id=\"86592bb7-0d9f-49a5-bb06-ee86fa7b422f\" />"
+         + "<atom:link rel=\"http://docs.oasis-open.org/ns/cmis/link/200908/changes\" href=\"http://cmis.demo.nuxeo.org/nuxeo/atom/cmis/default/changes\"  type=\"application/atom+xml;type=feed\" />"
+         + "<cmisra:uritemplate>"
+         + "<cmisra:template>http://cmis.demo.nuxeo.org/nuxeo/atom/cmis/default/id?id={id}&amp;filter={filter}&amp;includeAllowableActions={includeAllowableActions}&amp;includeACL={includeACL}&amp;includePolicyIds={includePolicyIds}&amp;includeRelationships={includeRelationships}&amp;renditionFilter={renditionFilter}</cmisra:template>"
+         + "<cmisra:type>objectbyid</cmisra:type>"
+         + "<cmisra:mediatype>application/atom+xml;type=entry</cmisra:mediatype>"
+         + "</cmisra:uritemplate>"
+         + "<cmisra:uritemplate>"
+         + "<cmisra:template>http://cmis.demo.nuxeo.org/nuxeo/atom/cmis/default/path?path={path}&amp;filter={filter}&amp;includeAllowableActions={includeAllowableActions}&amp;includeACL={includeACL}&amp;includePolicyIds={includePolicyIds}&amp;includeRelationships={includeRelationships}&amp;renditionFilter={renditionFilter}</cmisra:template>"
+         + "<cmisra:type>objectbypath</cmisra:type>"
+         + "<cmisra:mediatype>application/atom+xml;type=entry</cmisra:mediatype>"
+         + "</cmisra:uritemplate>"
+         + "<cmisra:uritemplate>"
+         + "<cmisra:template>http://cmis.demo.nuxeo.org/nuxeo/atom/cmis/default/type?id={id}</cmisra:template>"
+         + "<cmisra:type>typebyid</cmisra:type>"
+         + "<cmisra:mediatype>application/atom+xml;type=entry</cmisra:mediatype>"
+         + "</cmisra:uritemplate>"
+         + "<cmisra:uritemplate>"
+         + "<cmisra:template>http://cmis.demo.nuxeo.org/nuxeo/atom/cmis/default/query?q={q}&amp;searchAllVersions={searchAllVersions}&amp;includeAllowableActions={includeAllowableActions}&amp;includeRelationships={includeRelationships}&amp;maxItems={maxItems}&amp;skipCount={skipCount}</cmisra:template>"
+         + "<cmisra:type>query</cmisra:type>" + "<cmisra:mediatype>application/atom+xml;type=feed</cmisra:mediatype>"
+         + "</cmisra:uritemplate>" + "</app:workspace>" + "</app:service>";
 
    private String typeChildrenResponse =
       "<?xml version='1.0' encoding='UTF-8'?>"
@@ -413,6 +493,24 @@ public class GwtTestRepositoryService extends GWTTestCase
       return "org.gwtcmis.CmisClientFrameworkJUnit";
    }
 
+   public void testGetRepositoriesNuxeo()
+   {
+      Document doc = XMLParser.parse(nuxeoRepositoriesResponse);
+      List<CmisRepositoryInfo> repositoryInfoList = RepositoriesParser.parse(doc);
+
+      assertEquals(1, repositoryInfoList.size());
+      //main info
+      assertEquals("default", repositoryInfoList.get(0).getRepositoryId());
+      assertEquals("Nuxeo Repository default", repositoryInfoList.get(0).getRepositoryName());
+      assertEquals("Nuxeo Repository default", repositoryInfoList.get(0).getRepositoryDescription());
+      assertEquals("Nuxeo", repositoryInfoList.get(0).getVendorName());
+      assertEquals("Nuxeo OpenCMIS Connector", repositoryInfoList.get(0).getProductName());
+      assertEquals("5.4.0-SNAPSHOT", repositoryInfoList.get(0).getProductVersion());
+      assertEquals("86592bb7-0d9f-49a5-bb06-ee86fa7b422f", repositoryInfoList.get(0).getRootFolderId());
+      assertEquals(null, repositoryInfoList.get(0).getLatestChangeLogToken());
+      assertEquals(null, repositoryInfoList.get(0).getThinClientURI());
+   }
+
    public void testGetRepositories()
    {
       Document doc = XMLParser.parse(repositoriesResponse);
@@ -434,7 +532,7 @@ public class GwtTestRepositoryService extends GWTTestCase
    public void testGetRepositoryCapabilities()
    {
       Document doc = XMLParser.parse(repositoriesResponse);
-      Node repositoryNode = doc.getElementsByTagName(CMIS.WORKSPACE).item(0);
+      Node repositoryNode = doc.getElementsByTagName(CMIS.WORKSPACE.getLocalName()).item(0);
 
       CmisRepositoryInfo repositoryInfo = new CmisRepositoryInfo();
       RepositoryInfoParser.parse(repositoryNode, repositoryInfo);
@@ -452,6 +550,32 @@ public class GwtTestRepositoryService extends GWTTestCase
       assertEquals(EnumCapabilityRendition.NONE, repositoryInfo.getCapabilities().getCapabilityRenditions());
       assertTrue(repositoryInfo.getCapabilities().isCapabilityPWCSearchable());
       assertTrue(repositoryInfo.getCapabilities().isCapabilityPWCUpdatable());
+      assertFalse(repositoryInfo.getCapabilities().isCapabilityUnfiling());
+      assertFalse(repositoryInfo.getCapabilities().isCapabilityVersionSpecificFiling());
+      assertEquals(EnumCapabilityJoin.INNERANDOUTER, repositoryInfo.getCapabilities().getCapabilityJoin());
+   }
+
+   public void testGetRepositoryCapabilitiesNuxeo()
+   {
+      Document doc = XMLParser.parse(nuxeoRepositoriesResponse);
+      Node repositoryNode = doc.getElementsByTagName(CMIS.WORKSPACE.getLocalName()).item(0);
+
+      CmisRepositoryInfo repositoryInfo = new CmisRepositoryInfo();
+      RepositoryInfoParser.parse(repositoryNode, repositoryInfo);
+
+      //capabilities
+      assertEquals(EnumCapabilityACL.NONE, repositoryInfo.getCapabilities().getCapabilityACL());
+      assertTrue(repositoryInfo.getCapabilities().isCapabilityAllVersionsSearchable());
+      assertEquals(EnumCapabilityChanges.PROPERTIES, repositoryInfo.getCapabilities().getCapabilityChanges());
+      assertEquals(EnumCapabilityContentStreamUpdates.PWCONLY, repositoryInfo.getCapabilities()
+         .getCapabilityContentStreamUpdatability());
+      assertTrue(repositoryInfo.getCapabilities().isCapabilityGetDescendants());
+      assertTrue(repositoryInfo.getCapabilities().isCapabilityGetFolderTree());
+      assertFalse(repositoryInfo.getCapabilities().isCapabilityMultifiling());
+      assertEquals(EnumCapabilityQuery.BOTHCOMBINED, repositoryInfo.getCapabilities().getCapabilityQuery());
+      assertEquals(EnumCapabilityRendition.NONE, repositoryInfo.getCapabilities().getCapabilityRenditions());
+      assertFalse(repositoryInfo.getCapabilities().isCapabilityPWCSearchable());
+      assertFalse(repositoryInfo.getCapabilities().isCapabilityPWCUpdatable());
       assertFalse(repositoryInfo.getCapabilities().isCapabilityUnfiling());
       assertFalse(repositoryInfo.getCapabilities().isCapabilityVersionSpecificFiling());
       assertEquals(EnumCapabilityJoin.INNERANDOUTER, repositoryInfo.getCapabilities().getCapabilityJoin());
@@ -481,6 +605,32 @@ public class GwtTestRepositoryService extends GWTTestCase
       assertEquals(EnumCollectionType.QUERY, repositoryInfoList.get(0).getCollections().get(4).getType());
       assertEquals("http://cmis.demo.nuxeo.org/nuxeo/site/cmis/query", repositoryInfoList.get(0).getCollections()
          .get(4).getHref());
+   }
+
+   public void testGetNuxeoRepositoryCollections()
+   {
+      Document doc = XMLParser.parse(nuxeoRepositoriesResponse);
+      List<CmisRepositoryInfo> repositoryInfoList = RepositoriesParser.parse(doc);
+      CmisRepositoryInfo repositoryInfo = repositoryInfoList.get(0);
+
+      //collections
+      assertEquals(EnumCollectionType.ROOT, repositoryInfoList.get(0).getCollections().get(0).getType());
+      assertEquals(
+         "http://cmis.demo.nuxeo.org/nuxeo/atom/cmis/default/children?id=86592bb7-0d9f-49a5-bb06-ee86fa7b422f",
+         repositoryInfo.getCollections().get(0).getHref());
+
+      assertEquals(EnumCollectionType.TYPES, repositoryInfoList.get(0).getCollections().get(1).getType());
+      assertEquals("http://cmis.demo.nuxeo.org/nuxeo/atom/cmis/default/types", repositoryInfo.getCollections().get(1)
+         .getHref());
+
+      assertEquals(EnumCollectionType.QUERY, repositoryInfoList.get(0).getCollections().get(2).getType());
+      assertEquals("http://cmis.demo.nuxeo.org/nuxeo/atom/cmis/default/query", repositoryInfo.getCollections().get(2)
+         .getHref());
+
+      assertEquals(EnumCollectionType.CHECKEDOUT, repositoryInfoList.get(0).getCollections().get(3).getType());
+      assertEquals("http://cmis.demo.nuxeo.org/nuxeo/atom/cmis/default/checkedout", repositoryInfo.getCollections()
+         .get(3).getHref());
+
    }
 
    public void testTypeChildrenResponse() throws UnmarshallerException
@@ -528,7 +678,6 @@ public class GwtTestRepositoryService extends GWTTestCase
 
    }
 
-  
    public void testGetTypesWithPropertyDefinition() throws UnmarshallerException
    {
       Document doc = XMLParser.parse(getTypeDefinitionIncludePropertyDefinition);
@@ -539,8 +688,8 @@ public class GwtTestRepositoryService extends GWTTestCase
       TypeParser.getTypeEntry(entryNode, typeEntry);
       assertEquals(11, typeEntry.getTypeCmisTypeDefinition().getPropertyDefinitions().size());
 
-      
-      IdPropertyDefinition propertyDefinition = (IdPropertyDefinition)typeEntry.getTypeCmisTypeDefinition().getPropertyDefinition(CMIS.CMIS_SOURCE_ID);
+      IdPropertyDefinition propertyDefinition =
+         (IdPropertyDefinition)typeEntry.getTypeCmisTypeDefinition().getPropertyDefinition(CMIS.CMIS_SOURCE_ID);
       assertEquals("cmis:sourceId", propertyDefinition.getId());
       assertEquals("id", propertyDefinition.getPropertyType().value());
       assertEquals("single", propertyDefinition.getCardinality().value());
@@ -554,7 +703,8 @@ public class GwtTestRepositoryService extends GWTTestCase
       assertTrue(propertyDefinition.isOrderable());
       assertFalse(propertyDefinition.isOpenChoice());
 
-      propertyDefinition = (IdPropertyDefinition)typeEntry.getTypeCmisTypeDefinition().getPropertyDefinition(CMIS.CMIS_TARGET_ID);
+      propertyDefinition =
+         (IdPropertyDefinition)typeEntry.getTypeCmisTypeDefinition().getPropertyDefinition(CMIS.CMIS_TARGET_ID);
       assertEquals("cmis:targetId", propertyDefinition.getId());
       assertEquals("id", propertyDefinition.getPropertyType().value());
       assertEquals("single", propertyDefinition.getCardinality().value());
@@ -569,7 +719,9 @@ public class GwtTestRepositoryService extends GWTTestCase
       assertTrue(propertyDefinition.isOrderable());
       assertFalse(propertyDefinition.isOpenChoice());
 
-      DateTimePropertyDefinition propertyDate = (DateTimePropertyDefinition)typeEntry.getTypeCmisTypeDefinition().getPropertyDefinition(CMIS.CMIS_LAST_MODIFICATION_DATE);
+      DateTimePropertyDefinition propertyDate =
+         (DateTimePropertyDefinition)typeEntry.getTypeCmisTypeDefinition().getPropertyDefinition(
+            CMIS.CMIS_LAST_MODIFICATION_DATE);
       assertEquals("cmis:lastModificationDate", propertyDate.getId());
       assertEquals("datetime", propertyDate.getPropertyType().value());
       assertEquals("single", propertyDate.getCardinality().value());
@@ -584,7 +736,8 @@ public class GwtTestRepositoryService extends GWTTestCase
       assertTrue(propertyDate.isOrderable());
       assertFalse(propertyDate.isOpenChoice());
 
-      StringPropertyDefinition propertyString = (StringPropertyDefinition)typeEntry.getTypeCmisTypeDefinition().getPropertyDefinition(CMIS.CMIS_NAME);
+      StringPropertyDefinition propertyString =
+         (StringPropertyDefinition)typeEntry.getTypeCmisTypeDefinition().getPropertyDefinition(CMIS.CMIS_NAME);
       assertEquals("cmis:name", propertyString.getId());
       assertEquals("string", propertyString.getPropertyType().value());
       assertEquals("single", propertyString.getCardinality().value());
@@ -600,7 +753,8 @@ public class GwtTestRepositoryService extends GWTTestCase
       assertTrue(propertyString.isOrderable());
       assertFalse(propertyString.isOpenChoice());
 
-      propertyString = (StringPropertyDefinition)typeEntry.getTypeCmisTypeDefinition().getPropertyDefinition(CMIS.CMIS_CREATED_BY);
+      propertyString =
+         (StringPropertyDefinition)typeEntry.getTypeCmisTypeDefinition().getPropertyDefinition(CMIS.CMIS_CREATED_BY);
       assertEquals("cmis:createdBy", propertyString.getId());
       assertEquals("string", propertyString.getPropertyType().value());
       assertEquals("single", propertyString.getCardinality().value());
@@ -622,12 +776,13 @@ public class GwtTestRepositoryService extends GWTTestCase
       Document doc = XMLParser.parse(typeDescendantsResponse);
       List<TypeEntry> types = TypeParser.getTypes(doc);
       assertEquals(1, types.size());
-      
+
       TypeEntry parentType = types.get(0);
       assertEquals(2, parentType.getLinks().size());
       assertEquals("webdav:folder", parentType.getTypeCmisTypeDefinition().getId());
       assertEquals("webdav:folder", parentType.getTypeCmisTypeDefinition().getLocalName());
-      assertEquals("http://www.exoplatform.com/jcr/cmis/1.0", parentType.getTypeCmisTypeDefinition().getLocalNamespace());
+      assertEquals("http://www.exoplatform.com/jcr/cmis/1.0", parentType.getTypeCmisTypeDefinition()
+         .getLocalNamespace());
       assertEquals("webdav:folder", parentType.getTypeCmisTypeDefinition().getDisplayName());
       assertEquals("webdav:folder", parentType.getTypeCmisTypeDefinition().getQueryName());
       assertEquals("Cmis Folder Type", parentType.getTypeCmisTypeDefinition().getDescription());
@@ -640,8 +795,7 @@ public class GwtTestRepositoryService extends GWTTestCase
       assertTrue(parentType.getTypeCmisTypeDefinition().isControllablePolicy());
       assertFalse(parentType.getTypeCmisTypeDefinition().isFulltextIndexed());
       assertEquals(2, parentType.getChildren().size());
-      
-      
+
       TypeEntry child = parentType.getChildren().get(0);
       assertEquals(2, child.getLinks().size());
       assertEquals("new", child.getTypeCmisTypeDefinition().getId());
@@ -658,7 +812,7 @@ public class GwtTestRepositoryService extends GWTTestCase
       assertTrue(child.getTypeCmisTypeDefinition().isIncludedInSupertypeQuery());
       assertTrue(child.getTypeCmisTypeDefinition().isControllablePolicy());
       assertFalse(child.getTypeCmisTypeDefinition().isFulltextIndexed());
-      
+
       child = parentType.getChildren().get(1);
       assertEquals(2, child.getLinks().size());
       assertEquals("new2", child.getTypeCmisTypeDefinition().getId());
@@ -676,13 +830,13 @@ public class GwtTestRepositoryService extends GWTTestCase
       assertTrue(child.getTypeCmisTypeDefinition().isControllablePolicy());
       assertFalse(child.getTypeCmisTypeDefinition().isFulltextIndexed());
    }
-   
+
    public void testGetTypeList() throws UnmarshallerException
    {
       Document doc = XMLParser.parse(typeDescendantsResponse);
       List<TypeDefinition> types = TypeParser.getTypeList(doc);
       assertEquals(3, types.size());
-      
+
       TypeDefinition type = types.get(0);
       assertEquals("webdav:folder", type.getId());
       assertEquals("webdav:folder", type.getLocalName());
@@ -698,7 +852,7 @@ public class GwtTestRepositoryService extends GWTTestCase
       assertTrue(type.isIncludedInSupertypeQuery());
       assertTrue(type.isControllablePolicy());
       assertFalse(type.isFulltextIndexed());
-      
+
       type = types.get(1);
       assertEquals("new", type.getId());
       assertEquals("new", type.getLocalName());
@@ -714,7 +868,7 @@ public class GwtTestRepositoryService extends GWTTestCase
       assertTrue(type.isIncludedInSupertypeQuery());
       assertTrue(type.isControllablePolicy());
       assertFalse(type.isFulltextIndexed());
-      
+
       type = types.get(2);
       assertEquals("new2", type.getId());
       assertEquals("new2", type.getLocalName());

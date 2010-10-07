@@ -22,6 +22,7 @@ package org.gwtcmis.unmarshallers.parser;
 import org.gwtcmis.client.CMIS;
 import org.gwtcmis.model.repository.CmisCollection;
 import org.gwtcmis.model.restatom.EnumCollectionType;
+import org.gwtcmis.rest.QName;
 
 
 
@@ -59,7 +60,9 @@ public class CollectionsParser
       for (int i = 0; i < node.getChildNodes().getLength(); i++)
       {
          Node collectionItem = node.getChildNodes().item(i);
-         if (collectionItem.getNodeName().equals(CMIS.COLLECTION))
+         QName qName = new QName(collectionItem.getNodeName(), collectionItem.getNamespaceURI());
+         
+         if (CMIS.COLLECTION.equals(qName))
          {
             CmisCollection collection = new CmisCollection();
             for (int j = 0; j < collectionItem.getAttributes().getLength(); j++)

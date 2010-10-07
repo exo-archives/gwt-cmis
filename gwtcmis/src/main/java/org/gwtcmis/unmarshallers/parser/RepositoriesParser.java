@@ -60,7 +60,7 @@ public class RepositoriesParser
    public static List<CmisRepositoryInfo> parse(Document response)
    {
       List<CmisRepositoryInfo> repositoryInfoList = new ArrayList<CmisRepositoryInfo>();
-      NodeList nodeList = response.getElementsByTagName(CMIS.WORKSPACE);
+      NodeList nodeList = response.getElementsByTagName(CMIS.WORKSPACE.getLocalName());
       if (nodeList != null && nodeList.getLength() > 0)
       {
          for (int i = 0; i < nodeList.getLength(); i++)

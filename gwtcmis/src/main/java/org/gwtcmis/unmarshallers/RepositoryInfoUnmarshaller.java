@@ -67,7 +67,7 @@ public class RepositoryInfoUnmarshaller implements Unmarshallable
       try
       {
          Document doc = XMLParser.parse(body);
-         NodeList nodeList = doc.getElementsByTagName(CMIS.WORKSPACE);
+         NodeList nodeList = doc.getElementsByTagName(CMIS.WORKSPACE.getLocalName());
          if (nodeList != null && nodeList.getLength() > 0)
          {
             Node repositoryNode = nodeList.item(0);
