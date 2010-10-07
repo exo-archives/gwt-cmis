@@ -21,6 +21,7 @@ package org.gwtcmis.unmarshallers.parser;
 
 import org.gwtcmis.client.CMIS;
 import org.gwtcmis.model.restatom.AtomAuthor;
+import org.gwtcmis.rest.QName;
 
 
 
@@ -58,15 +59,16 @@ public class AtomAuthorParser
       {
          Node item = nodeList.item(i);
          String nodeValue = item.getFirstChild().getNodeValue();
-         if (item.getNodeName().equals(CMIS.ATOM_NAME))
+         QName qName = new QName(item.getNodeName(), item.getNamespaceURI());
+         if (CMIS.ATOM_NAME.equals(qName))
          {
             author.setName(nodeValue);
          }
-         else if (item.getNodeName().equals(CMIS.ATOM_EMAIL))
+         else if (CMIS.ATOM_EMAIL.equals(qName))
          {
             author.setEmail(nodeValue);
          }
-         else if (item.getNodeName().equals(CMIS.ATOM_URI))
+         else if (CMIS.ATOM_URI.equals(qName))
          {
             author.setUri(nodeValue);
          }

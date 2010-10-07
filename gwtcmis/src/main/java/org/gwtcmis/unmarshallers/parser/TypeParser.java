@@ -25,6 +25,7 @@ import org.gwtcmis.model.EnumContentStreamAllowed;
 import org.gwtcmis.model.property.PropertyDefinition;
 import org.gwtcmis.model.restatom.TypeEntry;
 import org.gwtcmis.model.type.TypeDefinition;
+import org.gwtcmis.rest.QName;
 import org.gwtcmis.rest.UnmarshallerException;
 
 
@@ -87,7 +88,8 @@ public class TypeParser
       NodeList feedInfoList = response.getElementsByTagName(CMIS.FEED).item(0).getChildNodes();
       for (int i = 0; i < feedInfoList.getLength(); i++)
       {
-         if (feedInfoList.item(i).getNodeName().equals(CMIS.ENTRY))
+         QName qName = new QName(feedInfoList.item(i).getNodeName(), feedInfoList.item(i).getNamespaceURI());
+         if (CMIS.ATOM_ENTRY.equals(qName))
          {
             TypeEntry typeEntry = new TypeEntry();
             getTypeEntry(feedInfoList.item(i), typeEntry);
@@ -141,7 +143,8 @@ public class TypeParser
       for (int i = 0; i < children.getLength(); i++)
       {
          Node child = children.item(i);
-         if (child.getNodeName().equals(CMIS.ENTRY))
+         QName qName = new QName(child.getNodeName(), child.getNamespaceURI());
+         if (CMIS.ATOM_ENTRY.equals(qName))
          {
             TypeEntry typeEntry = new TypeEntry();
             typeEntry.setLinks(AtomEntryParser.getEntryInfo(child.getChildNodes()).getLinks());

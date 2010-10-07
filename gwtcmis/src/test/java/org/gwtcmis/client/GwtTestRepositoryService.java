@@ -681,7 +681,7 @@ public class GwtTestRepositoryService extends GWTTestCase
    public void testGetTypesWithPropertyDefinition() throws UnmarshallerException
    {
       Document doc = XMLParser.parse(getTypeDefinitionIncludePropertyDefinition);
-      Node entryNode = doc.getElementsByTagName(CMIS.ENTRY).item(0);
+      Node entryNode = doc.getElementsByTagName(CMIS.ATOM_ENTRY.getLocalName()).item(0);
 
       TypeEntry typeEntry = new TypeEntry();
 

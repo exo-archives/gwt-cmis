@@ -25,6 +25,7 @@ import org.gwtcmis.model.restatom.AtomContentType;
 import org.gwtcmis.model.restatom.AtomEntry;
 import org.gwtcmis.model.restatom.EntryInfo;
 import org.gwtcmis.model.util.DateUtil;
+import org.gwtcmis.rest.QName;
 
 
 
@@ -99,7 +100,8 @@ public class AtomEntryParser
          for (int i = 0; i < childrenNode.getChildNodes().getLength(); i++)
          {
             Node node = childrenNode.getChildNodes().item(i);
-            if (node.getNodeName().equals(CMIS.ENTRY))
+            QName qName = new QName(node.getNodeName(), node.getNamespaceURI());
+            if (CMIS.ATOM_ENTRY.equals(qName))
             {
                AtomEntry entry = new AtomEntry();
                parse(node, entry);
@@ -122,14 +124,15 @@ public class AtomEntryParser
       {
          Node item = nodeList.item(i);
          String value = (item.getFirstChild() == null) ? "" : item.getFirstChild().getNodeValue();
-
-         if (item.getNodeName().equals(CMIS.ATOM_AUTHOR))
+         
+         QName qName = new QName(item.getNodeName(), item.getNamespaceURI());
+         if (CMIS.ATOM_AUTHOR.equals(qName))
          {
             AtomAuthor author = AtomAuthorParser.parse(item);
             entryInfo.setAuthor(author);
             item.getParentNode().removeChild(item);
          }
-         else if (item.getNodeName().equals(CMIS.ATOM_CONTENT))
+         else if (CMIS.ATOM_CONTENT.equals(qName))
          {
             AtomContentType content = new AtomContentType();
             for (int k = 0; k < item.getAttributes().getLength(); k++)
@@ -146,32 +149,32 @@ public class AtomEntryParser
             entryInfo.setContent(content);
             item.getParentNode().removeChild(item);
          }
-         else if (item.getNodeName().equals(CMIS.ATOM_ID))
+         else if (CMIS.ATOM_ID.equals(qName))
          {
             entryInfo.setId(value);
             item.getParentNode().removeChild(item);
          }
-         else if (item.getNodeName().equals(CMIS.ATOM_SUMMARY))
+         else if (CMIS.ATOM_SUMMARY.equals(qName))
          {
             entryInfo.setSummary(value);
             item.getParentNode().removeChild(item);
          }
-         else if (item.getNodeName().equals(CMIS.ATOM_TITLE))
+         else if (CMIS.ATOM_TITLE.equals(qName))
          {
             entryInfo.setTitle(value);
             item.getParentNode().removeChild(item);
          }
-         else if (item.getNodeName().equals(CMIS.ATOM_UPDATED))
+         else if (CMIS.ATOM_UPDATED.equals(qName))
          {
             entryInfo.setUpdated(DateUtil.parseDate(value));
             item.getParentNode().removeChild(item);
          }
-         else if (item.getNodeName().equals(CMIS.ATOM_PUBLISHED))
+         else if (CMIS.ATOM_PUBLISHED.equals(qName))
          {
             entryInfo.setPublished(DateUtil.parseDate(value));
             item.getParentNode().removeChild(item);
          }
-         else if (item.getNodeName().equals(CMIS.ATOM_LINK))
+         else if (CMIS.ATOM_LINK.equals(qName))
          {
             entryInfo.getLinks().add(AtomLinkParser.parse(item));
             item.getParentNode().removeChild(item);

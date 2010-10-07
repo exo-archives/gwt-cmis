@@ -73,7 +73,7 @@ public class EntryUnmarshaller implements Unmarshallable
          try
          {
             Document doc = XMLParser.parse(body);
-            NodeList nodeList = doc.getElementsByTagName(CMIS.ENTRY);
+            NodeList nodeList = doc.getElementsByTagName(CMIS.ATOM_ENTRY.getLocalName());
             if (nodeList != null && nodeList.getLength() > 0)
             {
                Node entryNode = nodeList.item(0);

@@ -48,12 +48,6 @@ import org.gwtcmis.unmarshallers.TypeDefinitionUnmarshaller;
 import org.gwtcmis.unmarshallers.TypeDescendantsUnmarshaller;
 import org.gwtcmis.unmarshallers.TypeListUnmarshaller;
 
-
-
-
-
-
-
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.http.client.RequestBuilder;
 
@@ -90,7 +84,7 @@ public class RepositoryService
    {
       CmisRepositories cmisService = new CmisRepositories();
       RepositoriesReceivedEvent event = new RepositoriesReceivedEvent(url, cmisService);
-      ExceptionThrownEvent errorEvent = new ExceptionThrownEvent("Service " +url + " is not available");
+      ExceptionThrownEvent errorEvent = new ExceptionThrownEvent("Service " + url + " is not available");
       RepositoriesUnmarshaller unmarshaller = new RepositoriesUnmarshaller(cmisService);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
       AsyncRequest.build(RequestBuilder.GET, url).send(callback);
@@ -135,8 +129,9 @@ public class RepositoryService
       params += (maxItems < 0) ? "" : CmisArguments.MAX_ITEMS + "=" + maxItems + "&";
       params += (skipCount < 0) ? "" : CmisArguments.SKIP_COUNT + "=" + skipCount + "&";
       params += CmisArguments.INCLUDE_PROPERTY_DEFINITIONS + "=" + includePropertyDefinitions;
+      url = (url.contains("?")) ? (url + "&" + params) : (url + "?" + params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.GET, url + "?" + params).send(callback);
+      AsyncRequest.build(RequestBuilder.GET, url).send(callback);
    }
 
    /**
@@ -158,8 +153,9 @@ public class RepositoryService
       String params = "";
       params += (depth < -1) ? "" : CmisArguments.DEPTH + "=" + depth + "&";
       params += CmisArguments.INCLUDE_PROPERTY_DEFINITIONS + "=" + includePropertyDefinition;
+      url = (url.contains("?")) ? (url + "&" + params) : (url + "?" + params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.GET, url + "?" + params).send(callback);
+      AsyncRequest.build(RequestBuilder.GET, url).send(callback);
    }
 
    /**
@@ -193,9 +189,10 @@ public class RepositoryService
       BaseTypesReceivedEvent event = new BaseTypesReceivedEvent(typeCollection);
       ExceptionThrownEvent errorEvent = new ExceptionThrownEvent("List of base types was not received.");
       TypeChildrenUnmarshaller unmarshaller = new TypeChildrenUnmarshaller(typeCollection);
+      String params = CmisArguments.INCLUDE_PROPERTY_DEFINITIONS + "=" + includePropertyDefinition;
+      url = (url.contains("?")) ? (url + "&" + params) : (url + "?" + params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.GET,
-         url + "?" + CmisArguments.INCLUDE_PROPERTY_DEFINITIONS + "=" + includePropertyDefinition).send(callback);
+      AsyncRequest.build(RequestBuilder.GET, url).send(callback);
    }
 
    /**
@@ -206,17 +203,18 @@ public class RepositoryService
     * @param url url
     * @param includePropertyDefinition include property definition
     */
-   public void getTypeList(String href, boolean includePropertyDefinition)
+   public void getTypeList(String url, boolean includePropertyDefinition)
    {
       TypeList typeList = new TypeList();
       TypeListReceivedEvent event = new TypeListReceivedEvent(typeList);
       ExceptionThrownEvent errorEvent = new ExceptionThrownEvent("List of types was not received.");
       TypeListUnmarshaller unmarshaller = new TypeListUnmarshaller(typeList);
+      String params =
+         CmisArguments.INCLUDE_PROPERTY_DEFINITIONS + "=" + includePropertyDefinition + "&" + CmisArguments.DEPTH + "="
+            + -1;
+      url = (url.contains("?")) ? (url + "&" + params) : (url + "?" + params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(
-         RequestBuilder.GET,
-         href + "?" + CmisArguments.INCLUDE_PROPERTY_DEFINITIONS + "=" + includePropertyDefinition + "&"
-            + CmisArguments.DEPTH + "=" + -1).send(callback);
+      AsyncRequest.build(RequestBuilder.GET, url).send(callback);
    }
 
    /**
@@ -250,8 +248,8 @@ public class RepositoryService
       TypeDeletedEvent event = new TypeDeletedEvent();
       ExceptionThrownEvent errorEvent = new ExceptionThrownEvent("Type was not deleted.");
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.POST, url).header(HTTPHeader.X_HTTP_METHOD_OVERRIDE, HTTPMethod.DELETE).send(
-         callback);
+      AsyncRequest.build(RequestBuilder.POST, url).header(HTTPHeader.X_HTTP_METHOD_OVERRIDE, HTTPMethod.DELETE)
+         .send(callback);
    }
 
 }

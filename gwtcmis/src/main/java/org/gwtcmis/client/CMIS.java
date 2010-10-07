@@ -66,62 +66,62 @@ public class CMIS
    /**
     * Atom author.
     */
-   public static final String ATOM_AUTHOR = "author";
+   public static final QName ATOM_AUTHOR = new QName("atom:author", "http://www.w3.org/2005/Atom");
 
    /**
     * Atom content.
     */
-   public static final String ATOM_CONTENT = "content";
+   public static final QName ATOM_CONTENT = new QName("atom:content", "http://www.w3.org/2005/Atom");
 
    /**
     * Atom email.
     */
-   public static final String ATOM_EMAIL = "email";
+   public static final QName ATOM_EMAIL = new QName("atom:email", "http://www.w3.org/2005/Atom");
 
    /**
     * Atom entry.
     */
-   public static final String ATOM_ENTRY = "entry";
+   public static final QName ATOM_ENTRY = new QName("atom:entry", "http://www.w3.org/2005/Atom");
 
    /**
     * Atom id.
     */
-   public static final String ATOM_ID = "id";
+   public static final QName ATOM_ID = new QName("atom:id", "http://www.w3.org/2005/Atom");
 
    /**
     * Atom link.
     */
-   public static final String ATOM_LINK = "link";
+   public static final QName ATOM_LINK = new QName("atom:link", "http://www.w3.org/2005/Atom");
 
    /**
     * Atom name.
     */
-   public static final String ATOM_NAME = "name";
+   public static final QName ATOM_NAME = new QName("atom:name", "http://www.w3.org/2005/Atom");
 
    /**
     * Atom published.
     */
-   public static final String ATOM_PUBLISHED = "published";
+   public static final QName ATOM_PUBLISHED = new QName("atom:published", "http://www.w3.org/2005/Atom");
 
    /**
     * Atom summary.
     */
-   public static final String ATOM_SUMMARY = "summary";
+   public static final QName ATOM_SUMMARY =new QName("atom:summary", "http://www.w3.org/2005/Atom");
 
    /**
     * Atom title.
     */
-   public static final String ATOM_TITLE = "title";
+   public static final QName ATOM_TITLE = new QName("atom:title", "http://www.w3.org/2005/Atom");
 
    /**
     * Atom updated.
     */
-   public static final String ATOM_UPDATED = "updated";
+   public static final QName ATOM_UPDATED = new QName("atom:updated", "http://www.w3.org/2005/Atom");
 
    /**
     * Atom URI.
     */
-   public static final String ATOM_URI = "uri";
+   public static final QName ATOM_URI = new QName("atom:uri", "http://www.w3.org/2005/Atom");
 
    /**
     * Base type document.
@@ -957,11 +957,6 @@ public class CMIS
     * Display name.
     */
    public static final String DISPLAY_NAME = "displayName";
-
-   /**
-    * Entry.
-    */
-   public static final String ENTRY = "entry";
 
    /**
     * Feed.

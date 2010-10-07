@@ -94,9 +94,9 @@ public class DiscoveryService
       params +=
          (query.getSkipCount() == null || query.getSkipCount() < 0) ? "" : CmisArguments.SKIP_COUNT + "="
             + query.getSkipCount() + "&";
-
+      url = (url.contains("?")) ? (url +"&"+params) : (url + "?" + params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.POST, url + "?" + params).header(HTTPHeader.CONTENT_TYPE,
+      AsyncRequest.build(RequestBuilder.POST, url).header(HTTPHeader.CONTENT_TYPE,
          CmisMediaTypes.QUERY_DOCUMENT).data(marshaller).send(callback);
    }
 

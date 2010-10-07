@@ -129,12 +129,13 @@ public class VersioningService
       params += CmisArguments.MAJOR + "=" + checkIn.getMajor() + "&";
       params +=
          (checkIn.getCheckinComment() == null || checkIn.getCheckinComment().length() <= 0) ? ""
-            : CmisArguments.CHECKIN_COMMENT + "=" + checkIn.getCheckinComment();
-
+            : CmisArguments.CHECKIN_COMMENT + "=" + checkIn.getCheckinComment()+"&";
+      params += CmisArguments.CHECKIN + "=true";
       CheckinMarshaller marshaller = new CheckinMarshaller(checkIn);
-
+      
+      url = (url.contains("?")) ? (url + "&" + params) : (url + "?" + params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.POST, url + "?" + CmisArguments.CHECKIN + "=true" + "&" + params).header(
+      AsyncRequest.build(RequestBuilder.POST, url).header(
          HTTPHeader.X_HTTP_METHOD_OVERRIDE, HTTPMethod.PUT).header(HTTPHeader.CONTENT_TYPE,
             CmisMediaTypes.ATOM_ENTRY).data(marshaller).send(callback);
    }
@@ -158,9 +159,9 @@ public class VersioningService
 
       String params = CmisArguments.INCLUDE_ALLOWABLE_ACTIONS + "=" + includeAllowableActions + "&";
       params += (filter == null || filter.length() <= 0) ? "" : CmisArguments.FILTER + "=" + filter;
-
+      url = (url.contains("?")) ? (url + "&" + params) : (url + "?" + params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.GET, url + "?" + params).send(callback);
+      AsyncRequest.build(RequestBuilder.GET, url).send(callback);
    }
 
 }

@@ -129,8 +129,9 @@ public class PolicyService
       EntryCollectionUnmarshaller unmarshaller = new EntryCollectionUnmarshaller(policies);
       String params = "";
       params += (filter == null || filter.length() <= 0) ? "" : CmisArguments.FILTER + "=" + filter;
+      url = (url.contains("?")) ? (url +"&"+params) : (url + "?" + params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.GET, url + "?" + params).send(callback);
+      AsyncRequest.build(RequestBuilder.GET, url).send(callback);
    }
 
    /**
@@ -177,6 +178,7 @@ public class PolicyService
             + renditionFilter + "&";
       params += CmisArguments.INCLUDE_ALLOWABLE_ACTIONS + "=" + includeAllowableActions + "&";
       params += CmisArguments.ALL_VERSIONS + "=" + searchAllVersions;
+      url = (url.contains("?")) ? (url +"&"+params) : (url + "?" + params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
       AsyncRequest.build(RequestBuilder.POST, url).header(HTTPHeader.CONTENT_TYPE, CmisMediaTypes.QUERY_DOCUMENT).data(
          marshaller).send(callback);

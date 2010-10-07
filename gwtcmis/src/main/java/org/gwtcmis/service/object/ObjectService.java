@@ -118,9 +118,9 @@ public class ObjectService
       String params =
          (createDocument.getVersioningState() == null) ? "" : CmisArguments.VERSIONING_STATE + "="
             + createDocument.getVersioningState().value();
-
+      url = (url.contains("?")) ? (url +"&"+params) : (url + "?" + params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.POST, url + "?" + params).header(HTTPHeader.CONTENT_TYPE, CmisMediaTypes.ATOM_ENTRY).data(marshaller).send(callback);
+      AsyncRequest.build(RequestBuilder.POST, url).header(HTTPHeader.CONTENT_TYPE, CmisMediaTypes.ATOM_ENTRY).data(marshaller).send(callback);
    }
 
    
@@ -140,9 +140,9 @@ public class ObjectService
       String params =
          (createDocument.getVersioningState() == null) ? "" : CmisArguments.VERSIONING_STATE + "="
             + createDocument.getVersioningState().value();
-
+      url = (url.contains("?")) ? (url +"&"+params) : (url + "?" + params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.POST, url + "?" + params).header(HTTPHeader.CONTENT_TYPE, CmisMediaTypes.ATOM_ENTRY).data(marshaller).send(callback);
+      AsyncRequest.build(RequestBuilder.POST, url).header(HTTPHeader.CONTENT_TYPE, CmisMediaTypes.ATOM_ENTRY).data(marshaller).send(callback);
    }
    
    
@@ -181,8 +181,9 @@ public class ObjectService
       String params =
          (createDocument.getVersioningState() == null) ? "" : CmisArguments.VERSIONING_STATE + "="
             + createDocument.getVersioningState().value();
+      url = (url.contains("?")) ? (url +"&"+params) : (url + "?" + params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.POST, url + "?" + params).header(HTTPHeader.CONTENT_TYPE, CmisMediaTypes.ATOM_ENTRY).data(marshaller).send(callback);
+      AsyncRequest.build(RequestBuilder.POST, url).header(HTTPHeader.CONTENT_TYPE, CmisMediaTypes.ATOM_ENTRY).data(marshaller).send(callback);
    }
 
    /**
@@ -205,8 +206,9 @@ public class ObjectService
       String params =
          (createDocumentFromSource.getVersioningState() == null) ? "" : CmisArguments.VERSIONING_STATE + "="
             + createDocumentFromSource.getVersioningState().value();
+      url = (url.contains("?")) ? (url +"&"+params) : (url + "?" + params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.POST, url + "?" + params).header(HTTPHeader.CONTENT_TYPE, CmisMediaTypes.ATOM_ENTRY).data(marshaller).send(callback);
+      AsyncRequest.build(RequestBuilder.POST, url).header(HTTPHeader.CONTENT_TYPE, CmisMediaTypes.ATOM_ENTRY).data(marshaller).send(callback);
    }
 
    /**
@@ -318,9 +320,9 @@ public class ObjectService
       params += CmisArguments.INCLUDE_ACL + "=" + includeACL + "&";
       params += CmisArguments.INCLUDE_POLICY_IDS + "=" + includePolicyIds + "&";
       params += CmisArguments.INCLUDE_ALLOWABLE_ACTIONS + "=" + includeAllowableActions;
-
+      url = (url.contains("?")) ? (url +"&"+params) : (url + "?" + params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.GET, url + "?" + params).send(callback);
+      AsyncRequest.build(RequestBuilder.GET, url).send(callback);
    }
 
    /**
@@ -338,8 +340,9 @@ public class ObjectService
       ExceptionThrownEvent errorEvent = new ExceptionThrownEvent("Object properties were not recieved.");
       EntryUnmarshaller unmarshaller = new EntryUnmarshaller(entry);
       String params = (filter == null || filter.length() < 0) ? "" : CmisArguments.FILTER + "=" + filter;
+      url = (url.contains("?")) ? (url +"&"+params) : (url + "?" + params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.GET, url + "?" + params).send(callback);
+      AsyncRequest.build(RequestBuilder.GET, url).send(callback);
    }
 
    /**
@@ -397,9 +400,9 @@ public class ObjectService
       EntryUnmarshaller unmarshaller = new EntryUnmarshaller(entry);
       MoveObjectMarshaller marshaller = new MoveObjectMarshaller(moveObject);
       String param = (moveObject.getSourceFolderId() == null)? "" : CmisArguments.SOURCE_FOLDER_ID + "="+moveObject.getSourceFolderId();
-      
+      url = (url.contains("?")) ? (url +"&"+param) : (url + "?" + param);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.POST, url+"?"+param).header(HTTPHeader.CONTENT_TYPE, CmisMediaTypes.ATOM_ENTRY).data(marshaller).send(callback);
+      AsyncRequest.build(RequestBuilder.POST, url).header(HTTPHeader.CONTENT_TYPE, CmisMediaTypes.ATOM_ENTRY).data(marshaller).send(callback);
    }
 
    /**
@@ -415,8 +418,9 @@ public class ObjectService
       ObjectDeletedEvent event = new ObjectDeletedEvent();
       ExceptionThrownEvent errorEvent = new ExceptionThrownEvent("Object was not deleted.");
       String params = CmisArguments.ALL_VERSIONS + "=" + allVersions;
+      url = (url.contains("?")) ? (url +"&"+params) : (url + "?" + params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.POST, url + "?" + params).header(HTTPHeader.X_HTTP_METHOD_OVERRIDE,
+      AsyncRequest.build(RequestBuilder.POST, url).header(HTTPHeader.X_HTTP_METHOD_OVERRIDE,
          HTTPMethod.DELETE).send(callback);
    }
 
@@ -437,8 +441,9 @@ public class ObjectService
       String params = CmisArguments.ALL_VERSIONS + "=" + allVersions + "&";
       params += (unfileObject == null) ? "" : CmisArguments.UNFILE_OBJECTS + "=" + unfileObject.value() + "&";
       params += CmisArguments.CONTINUE_ON_FAILURE + "=" + continueOnFailure;
+      url = (url.contains("?")) ? (url +"&"+params) : (url + "?" + params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.POST, url + "?" + params).header(HTTPHeader.X_HTTP_METHOD_OVERRIDE,
+      AsyncRequest.build(RequestBuilder.POST, url).header(HTTPHeader.X_HTTP_METHOD_OVERRIDE,
          HTTPMethod.DELETE).send(callback);
    }
 
@@ -458,8 +463,9 @@ public class ObjectService
       ContentStreamSetEvent event = new ContentStreamSetEvent();
       ExceptionThrownEvent errorEvent = new ExceptionThrownEvent("Content stream was not set.");
       String params = CmisArguments.OVERWRITE_FLAG + "=" + overwriteFlag + "&";
+      url = (url.contains("?")) ? (url +"&"+params) : (url + "?" + params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.POST, url + "?" + params).header(HTTPHeader.X_HTTP_METHOD_OVERRIDE,
+      AsyncRequest.build(RequestBuilder.POST, url).header(HTTPHeader.X_HTTP_METHOD_OVERRIDE,
          HTTPMethod.PUT).header(HTTPHeader.CONTENTTYPE, contentStream.getMimeType()).data(contentStream.getStream())
          .send(callback);
    }

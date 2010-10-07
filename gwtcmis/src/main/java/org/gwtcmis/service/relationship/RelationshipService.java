@@ -91,8 +91,8 @@ public class RelationshipService
       params +=
          (relationshipDirection == null) ? "" : CmisArguments.RELATIONSHIP_DIRECTION + "="
             + relationshipDirection.value();
-
+      url = (url.contains("?")) ? (url +"&"+params) : (url + "?" + params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.GET, url + "?" + params).send(callback);
+      AsyncRequest.build(RequestBuilder.GET, url).send(callback);
    }
 }

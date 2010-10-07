@@ -32,12 +32,6 @@ import org.gwtcmis.service.acl.event.ACLAppliedEvent;
 import org.gwtcmis.service.acl.event.ACLReceivedEvent;
 import org.gwtcmis.unmarshallers.ACLUnmarshaller;
 
-
-
-
-
-
-
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.http.client.RequestBuilder;
 
@@ -77,8 +71,8 @@ public class ACLService
       ExceptionThrownEvent errorEvent = new ExceptionThrownEvent("ACL was not applied.");
       ApplyACLMarshaller marshaller = new ApplyACLMarshaller(applyACL);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.POST, url).header(HTTPHeader.X_HTTP_METHOD_OVERRIDE, HTTPMethod.PUT).header(
-         HTTPHeader.CONTENT_TYPE, "application/atom+xml;type=entry").data(marshaller).send(callback);
+      AsyncRequest.build(RequestBuilder.POST, url).header(HTTPHeader.X_HTTP_METHOD_OVERRIDE, HTTPMethod.PUT)
+         .header(HTTPHeader.CONTENT_TYPE, "application/atom+xml;type=entry").data(marshaller).send(callback);
    }
 
    /**
@@ -96,7 +90,8 @@ public class ACLService
       ExceptionThrownEvent errorEvent = new ExceptionThrownEvent("Access Control List was not found.");
       ACLUnmarshaller unmarshaller = new ACLUnmarshaller(accessControlListType);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.GET,
-         url + "?" + CmisArguments.ONLY_BASIC_PERMISSIONS + "=" + onlyBasicPermissions).send(callback);
+      String param = CmisArguments.ONLY_BASIC_PERMISSIONS + "=" + onlyBasicPermissions;
+      url = (url.contains("?")) ? (url + "&" + param) : (url + "?" + param);
+      AsyncRequest.build(RequestBuilder.GET, url).send(callback);
    }
 }

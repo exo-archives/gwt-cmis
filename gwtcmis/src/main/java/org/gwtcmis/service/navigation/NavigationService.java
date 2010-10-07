@@ -102,9 +102,9 @@ public class NavigationService
             + renditionFilter + "&";
       params += CmisArguments.INCLUDE_ALLOWABLE_ACTIONS + "=" + includeAllowableActions + "&";
       params += CmisArguments.INCLUDE_PATH_SEGMENT + "=" + includePathSegment;
-
+      url = url.contains("?") ? (url +"&"+params) : (url +"?"+params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.GET, url + "?" + params).send(callback);
+      AsyncRequest.build(RequestBuilder.GET, url).send(callback);
    }
 
    /**
@@ -136,9 +136,9 @@ public class NavigationService
             + renditionFilter + "&";
       params += CmisArguments.INCLUDE_ALLOWABLE_ACTIONS + "=" + includeAllowableActions + "&";
       params += CmisArguments.INCLUDE_PATH_SEGMENT + "=" + includePathSegment + "&";
-
+      url = url.contains("?") ? (url +"&"+params) : (url +"?"+params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.GET, url + "&" + params).send(callback);
+      AsyncRequest.build(RequestBuilder.GET, url).send(callback);
    }
 
    /**
@@ -173,8 +173,9 @@ public class NavigationService
             + renditionFilter + "&";
       params += CmisArguments.INCLUDE_ALLOWABLE_ACTIONS + "=" + includeAllowableActions + "&";
       params += CmisArguments.INCLUDE_PATH_SEGMENT + "=" + includePathSegment;
+      url = url.contains("?") ? (url +"&"+params) : (url +"?"+params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.GET, url + "?" + params).send(callback);
+      AsyncRequest.build(RequestBuilder.GET, url).send(callback);
    }
 
    /**
@@ -209,9 +210,9 @@ public class NavigationService
             + renditionFilter + "&";
       params += CmisArguments.INCLUDE_ALLOWABLE_ACTIONS + "=" + includeAllowableActions + "&";
       params += CmisArguments.INCLUDE_PATH_SEGMENT + "=" + includePathSegment;
-
+      url = url.contains("?") ? (url +"&"+params) : (url +"?"+params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.GET, url + "?" + params).send(callback);
+      AsyncRequest.build(RequestBuilder.GET, url).send(callback);
    }
 
    /**
@@ -229,8 +230,9 @@ public class NavigationService
       ExceptionThrownEvent errorEvent = new ExceptionThrownEvent("Folder parent was not received.");
       EntryUnmarshaller unmarshaller = new EntryUnmarshaller(entry);
       String params = (filter == null || filter.length() <= 0) ? "" : CmisArguments.FILTER + "=" + filter + "&";
+      url = url.contains("?") ? (url +"&"+params) : (url +"?"+params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.GET, url + "?" + params).send(callback);
+      AsyncRequest.build(RequestBuilder.GET, url).send(callback);
    }
 
    /**
@@ -263,9 +265,9 @@ public class NavigationService
             + renditionFilter + "&";
       params += CmisArguments.INCLUDE_ALLOWABLE_ACTIONS + "=" + includeAllowableActions + "&";
       params += CmisArguments.INCLUDE_RELATIVE_PATH_SEGMENT + "=" + includeRelativePathSegment;
-
+      url = url.contains("?") ? (url +"&"+params) : (url +"?"+params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.GET, url + "?" + params).send(callback);
+      AsyncRequest.build(RequestBuilder.GET, url).send(callback);
    }
 
    /**
@@ -301,9 +303,9 @@ public class NavigationService
             + renditionFilter + "&";
       params += (skipCount < 0) ? "" : CmisArguments.SKIP_COUNT + "=" + skipCount + "&";
       params += CmisArguments.INCLUDE_ALLOWABLE_ACTIONS + "=" + includeAllowableActions;
-
+      url = url.contains("?") ? (url +"&"+params) : (url +"?"+params);
       AsyncRequestCallback callback = new AsyncRequestCallback(eventBus, unmarshaller, event, errorEvent);
-      AsyncRequest.build(RequestBuilder.GET, url + "?" + params).send(callback);
+      AsyncRequest.build(RequestBuilder.GET, url).send(callback);
    }
 
 }

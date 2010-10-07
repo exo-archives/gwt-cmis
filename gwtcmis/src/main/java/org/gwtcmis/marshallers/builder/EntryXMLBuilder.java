@@ -89,7 +89,7 @@ public class EntryXMLBuilder
     */
    public static Element createEntryElement(Document doc)
    {
-      Element entry = doc.createElement(CMIS.ENTRY);
+      Element entry = doc.createElement(CMIS.ATOM_ENTRY.getLocalName());
       //Set entry xml element attributes
       entry.setAttribute(XMLNS.getLocalName(), XMLNS.getNamespaceURI());
       entry.setAttribute(XMLNS_CMIS.getPrefix() + ":" + XMLNS_CMIS.getLocalName(), XMLNS_CMIS.getNamespaceURI());
@@ -109,7 +109,7 @@ public class EntryXMLBuilder
       String request = XML + document.toString().trim();
       if (request.indexOf(XMLNS.getNamespaceURI()) == -1)
       {
-         return request.replaceAll("<" + CMIS.ENTRY, "<" + CMIS.ENTRY + " " + XMLNS.getLocalName() + "=" + "\""
+         return request.replaceAll("<" + CMIS.ATOM_ENTRY.getLocalName(), "<" + CMIS.ATOM_ENTRY.getLocalName() + " " + XMLNS.getLocalName() + "=" + "\""
             + XMLNS.getNamespaceURI() + "\" ");
       }
       return request;
