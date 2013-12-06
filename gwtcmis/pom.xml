@@ -2,6 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <modelVersion>4.0.0</modelVersion>
+   <parent>
+      <artifactId>maven-parent-pom</artifactId>
+      <groupId>org.exoplatform</groupId>
+      <version>10</version>
+    <relativePath />
+   </parent>
    <groupId>org.xcmis</groupId>
    <artifactId>gwtcmis</artifactId>
    <version>1.1-SNAPSHOT</version>
@@ -122,5 +128,39 @@
             </plugins>
          </build>
       </profile>
+    <profile>
+      <id>external-repositories</id>
+      <activation>
+        <property>
+          <name>!deactivate-ext-repos</name>
+        </property>
+      </activation>
+      <repositories>
+        <repository>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+          <id>repository.exoplatform.org</id>
+          <name>eXo Platform Public repositories</name>
+          <url>http://repository.exoplatform.org/public/</url>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+          <id>repository.exoplatform.org</id>
+          <name>eXo Platform Public repositories</name>
+          <url>http://repository.exoplatform.org/public/</url>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>      
    </profiles>
 </project>
