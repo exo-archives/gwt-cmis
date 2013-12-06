@@ -15,6 +15,9 @@
    <name>GWT CMIS Client Framework</name>
    <properties>
       <gwt.version>2.0.4</gwt.version>
+      <!-- Dedicated repositories -->
+      <!-- **************************************** -->
+      <exo.snapshots.repo.url>http://repository.exoplatform.org/content/repositories/xcmis-snapshots/</exo.snapshots.repo.url>
    </properties>
    <dependencies>
       <dependency>
